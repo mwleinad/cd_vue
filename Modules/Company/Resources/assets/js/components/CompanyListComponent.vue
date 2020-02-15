@@ -1,5 +1,6 @@
 <template>
     <v-container fluid>
+        <v-btn @click="companyCreate" depressed small >Create</v-btn>
         <v-row
             align="center"
             justify="center"
@@ -34,7 +35,8 @@
     },
     methods: {
       ...mapActions(companyListStore.name, [
-        "companiesGet"
+        "companiesGet",
+        "companyCreate"
       ]),
     },
     computed: {

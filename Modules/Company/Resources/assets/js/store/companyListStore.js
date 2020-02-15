@@ -1,4 +1,5 @@
 import companiesGetApi from "companyModule/api/companiesGetApi";
+import companyCreateApi from "companyModule/api/companyCreateApi";
 
 function initState() {
     return {
@@ -27,6 +28,9 @@ const mutations = {
     setItems(state, data) {
         state.items = data;
     },
+    addItem(state, data) {
+        state.items.push(data);
+    },
     destroy (state) {
         const init = initState();
         Object.keys(init).forEach(key => {
@@ -42,6 +46,10 @@ const actions = {
         let response = await companiesGetApi();
         commit('setItems', response.data.payload);
         commit('setLoading', false);
+    },
+    async companyCreate({state, commit}) {
+        let response = await companyCreateApi();
+        commit('addItem', response.data.payload);
     },
 };
 
